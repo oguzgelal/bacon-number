@@ -1,11 +1,22 @@
+<div style="text-align: center;">
+    <h2>Six Degrees of Kevin Bacon</h2>
+</div>
 <div class="search-cont">
-    <form action="/" method="GET">
-    <input type="text" name="url" placeholder="Enter URL">
-    <button class="btn btn-primary submit">Search</button>
-    </form>
+    <div style="position: relative; margin-bottom: 10px;">
+        <label style="float: left;">Target Actor (Defaults to Kevin Bacon)</label>
+        <input type="text" name="target_url" id="target_url" value="http://www.imdb.com/name/nm0000102/">
+    </div>
+    <div style="position: relative; margin-bottom: 10px;">
+        <label style="float: left; margin-top: 10px;">Source Actor</label>
+        <input type="text" name="source_url" id="source_url" placeholder="Enter imdb actor URL">
+        <button class="btn btn-primary submit" onclick="search()" style="position: absolute; right: 0; top: 35px;">Search</button>
+    </div>
 </div>
 {{#if results}}
+<div class="results" id="progress">
+    
+</div>
 <div class="results">
-    Results go here
+    <div class="graph-container" id="graph-container" style="height: 500px; background-color: whitesmoke; margin-top: 30px; border-radius: 5px;"></div>
 </div>
 {{/if}}
