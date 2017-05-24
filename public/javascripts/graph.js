@@ -10,15 +10,16 @@ socket.on('progress', function (data) {
 });
 
 socket.on('add-node', function (data) {
-    var existingObj = cy.getElementById(data.data.id);
-    if (existingObj && existingObj.length === 0) {
-        cy.add(data);
-        cy.layout();
-    }
+    cy.add(data);
+    console.log('Adding node, ', data);
 });
 socket.on('add-edge', function (data) {
     cy.add(data);
-    cy.layout();
+    console.log('Adding edge, ', data);
+});
+socket.on('result-found', function (data) {
+    alert('Result Found!');
+    console.log(data);
 });
 
 function search() {
@@ -31,6 +32,22 @@ function search() {
 $(document).ready(function () {
     cy = cytoscape({
         container: document.getElementById('graph-container'),
-        layout: { name: 'random' }
+        style: [
+            {
+                selector: 'node[type = "movie"]',
+                style: {
+                    'label': 'data(name)',
+                    'background-color': 'red'
+                }
+            },
+            {
+                selector: 'node[type = "actor"]',
+                style: {
+                    'label': 'data(name)',
+                    'background-color': 'blue'
+                }
+            }
+        ],
+        layout: { name: 'preset' }
     });
 });
